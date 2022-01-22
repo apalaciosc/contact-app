@@ -1,0 +1,16 @@
+<h2 class="text-center">Import Contacts</h2>
+<br>
+<%= form_with(model: @contact_file, local: true) do |f| %>
+  <div class="row">
+    <div class="col-xl-12 mb-3">
+      <label for="formFile" class="form-label">Select csv file</label>
+      <%= f.file_field :file, class: 'form-control', accept: '.csv' %>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-xl-12 text-center">
+      <button type="submit" class="text-center btn btn-primary">Submit</button>
+    </div>
+  </div>
+<% end %>
