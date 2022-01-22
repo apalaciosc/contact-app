@@ -4,4 +4,5 @@ class User < ApplicationRecord
 
   # Relations
   has_many :contacts
+  has_many :contact_files
 end
