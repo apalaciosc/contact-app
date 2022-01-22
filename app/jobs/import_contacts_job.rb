@@ -3,6 +3,10 @@ class ImportContactsJob < ApplicationJob
 
   def perform(contact_file_id)
     contact_file = ContactFile.find(contact_file_id)
-    puts contact_file
+    contact_file.processing!
+
+    ContactImporter.call(contact_file)
+  rescue StandardError
+    contact_file.failed!
   end
 end
