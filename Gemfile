@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.9'
 
+# Validate Credit Card
+gem 'credit_card_validations'
 # Bootstrap
 gem 'bootstrap', '~> 5.1.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
