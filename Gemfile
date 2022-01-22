@@ -7,6 +7,8 @@ ruby '2.6.9'
 gem 'bootstrap', '~> 5.1.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.0.4', '>= 6.0.4.4'
+# Background Jobs
+gem 'delayed_job_active_record'
 # Auth
 gem 'devise'
 # Use postgresql as the database for Active Record
