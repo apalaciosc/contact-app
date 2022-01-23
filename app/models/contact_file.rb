@@ -10,7 +10,7 @@ class ContactFile < ApplicationRecord
   after_create :enqueue_importation
 
   # Serializers
-  serialize :errors, Array
+  serialize :row_errors, Array
 
   def enqueue_importation
     ImportContactsJob.perform_later(id)
