@@ -63,6 +63,7 @@ group :test do
   # Unit testing gems
   gem 'database_cleaner-active_record'
   gem 'rspec-rails'
+  gem 'shoulda-matchers'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 end
