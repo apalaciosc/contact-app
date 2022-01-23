@@ -82,7 +82,7 @@ class ContactImporter < ApplicationService
   end
 
   def validate_phone(row_params)
-    Phonelib.valid_for_country?(row_params[:phone]&.gsub!(/[^0-9A-Za-z]/, ''), 'CO')
+    Phonelib.valid_for_country?(row_params[:phone]&.gsub(/[^0-9A-Za-z]/, ''), 'CO')
   end
 
   def validate_credit_card(row_params)
@@ -97,7 +97,7 @@ class ContactImporter < ApplicationService
   end
 
   def validate_repeated_email(row_params)
-    contact_emails.any? { |email| email == row_params[:email] }
+    contact_emails.empty? { |email| email == row_params[:email] }
   end
 
   def contact_emails
