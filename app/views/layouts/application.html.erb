@@ -10,6 +10,11 @@
   </head>
 
   <body>
+    <% if user_signed_in? %>
+      <nav class="navbar navbar-light bg-light">
+        <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'btn btn-danger' %>
+      </nav>
+    <% end %>
     <p class="text-center notice"><%= notice %></p>
     <p class="text-center alert"><%= alert %></p>
     <%= yield %>
