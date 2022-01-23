@@ -1,1 +1,50 @@
-<h2 class="text-center">index</h2>
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-xl-12">
+        <h2 class="text-center">Contacts</h2>
+      </div>
+    </div>
+    <br>
+    <div class="row text-center">
+      <div class="col-xl-12">
+        <%= link_to 'Import CSV File', new_contact_file_path, class: "btn btn-success" %>
+        <%= link_to 'Uploaded Files', contact_files_path, class: "btn btn-primary" %>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-xl-12">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Birthday</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Address</th>
+              <th scope="col">Credit Card</th>
+              <th scope="col">Franchise</th>
+              <th scope="col">Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @contacts.each_with_index do |contact, index| %>
+            <tr>
+              <th scope="row"><%= index + 1 %></th>
+              <td><%= contact.name %></td>
+              <td><%= contact.birthday&.strftime("%Y %B %d") %></td>
+              <td><%= contact.phone %></td>
+              <td><%= contact.address %></td>
+              <td><%= contact.credit_card %></td>
+              <td><%= contact.franchise&.humanize %></td>
+              <td><%= contact.email %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%= render 'partials/pagination' %>
+      </div>
+    </div>
+  </div>
+</div>

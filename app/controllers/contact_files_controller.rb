@@ -1,7 +1,9 @@
 class ContactFilesController < ApplicationController
   before_action :authenticate_user!
 
-  def index; end
+  def index
+    @pagy, @contact_files = pagy(current_user.contact_files.with_attached_file)
+  end
 
   def new
     @contact_file = ContactFile.new

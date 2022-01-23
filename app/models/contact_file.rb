@@ -15,4 +15,11 @@ class ContactFile < ApplicationRecord
   def enqueue_importation
     ImportContactsJob.perform_later(id)
   end
+
+  def badge
+    return 'primary' if on_hold?
+    return 'info' if processing?
+    return 'danger' if failed?
+    return 'success' if terminated?
+  end
 end
