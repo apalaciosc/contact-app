@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2022_01_22_170858) do
     t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "errors"
+    t.text "row_errors"
     t.index ["user_id"], name: "index_contact_files_on_user_id"
   end
 
