@@ -129,6 +129,8 @@ GEM
     nokogiri (1.13.1-x86_64-darwin)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    pagy (5.9.1)
+      activesupport
     pg (1.2.3)
     phonelib (0.6.55)
     popper_js (2.9.3)
@@ -245,6 +247,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   jquery-rails
   listen (~> 3.2)
+  pagy (~> 5.9)
   pg (>= 0.18, < 2.0)
   phonelib
   pry-rails
