@@ -61,6 +61,7 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Unit testing gems
+  gem 'database_cleaner-active_record'
   gem 'rspec-rails'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
