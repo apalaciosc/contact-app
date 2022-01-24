@@ -11,9 +11,9 @@ RSpec.describe ContactFile, type: :model do
 
   context 'create' do
     it 'must enqueue ImportContactsJob and create contact_file in status on_hold' do
-      contract_file = create(:contact_file)
+      contact_file = create(:contact_file)
 
-      expect(contract_file.on_hold?).to eq(true)
+      expect(contact_file.on_hold?).to eq(true)
       expect(enqueued_jobs.detect { |a| a['job_class'] == ImportContactsJob.to_s }).not_to be_nil
     end
   end
