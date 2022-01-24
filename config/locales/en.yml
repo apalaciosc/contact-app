@@ -1,9 +1,9 @@
 en:
   contact_file_errors:
-    name: Name is not valid.
     birthday: Date Of Birth is not valid.
-    phone: Phone is not valid.
     credit_card: Credit Card is not valid.
     email: Invalid email.
+    invalid_columns: Invalid Columns
+    name: Name is not valid.
+    phone: Phone is not valid.
     repeated_email: Email has already been taken.
-
