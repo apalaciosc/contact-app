@@ -4,6 +4,7 @@ class ContactImporter < ApplicationService
   REGULAR_EXPRESSION_NAME = /^[a-zA-Z\dáÁéÉíÍóÓúÚüÜñÑ\s-]*$/i.freeze
   NUMBER_COLUMNS = 6
   STEPS = %w[
+    validate_empty_file
     validate_columns
     import_data
   ].freeze
@@ -35,11 +36,18 @@ class ContactImporter < ApplicationService
 
   private
 
+  def validate_empty_file
+    return true unless csv.row(1)&.compact&.empty? || csv.last_row == 1
+
+    contact_file.terminated!
+    false
+  end
+
   def validate_columns
     return true if csv.row(1).count == NUMBER_COLUMNS
 
     contact_file.status = :failed
-    contact_file.row_errors << { errors: ['Invalid Columns'] }
+    contact_file.row_errors << { row: 1, errors: ['invalid_columns'] }
     false
   end
 
