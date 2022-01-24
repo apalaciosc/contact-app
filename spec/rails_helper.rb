@@ -45,7 +45,14 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
+  # Factory Bot
   config.include FactoryBot::Syntax::Methods
+
+  # Devise Helper
+  config.include Warden::Test::Helpers
+
+  # Requests
+  config.include Rails.application.routes.url_helpers, type: :request
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
