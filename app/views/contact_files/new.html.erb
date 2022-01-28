@@ -2,6 +2,19 @@
 <br>
 <%= form_with(model: @contact_file, local: true) do |f| %>
   <div class="row">
+    <%= f.fields_for :file_columns do |file_column_subform| %>
+      <% (1..6).each do |number| %>
+        <div class="col-xl-6 mb-3">
+          <%= file_column_subform.text_field :column_name, class: 'form-control', required: true, name: "contact_file[file_columns_attributes][#{number}][column_name]" %>
+        </div>
+        <div class="col-xl-6 mb-3">
+          <%= file_column_subform.select(:field, fields_for_select, { include_blank: 'Select option' }, class: "form-control", required: true, name: "contact_file[file_columns_attributes][#{number}][field]") %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <br>
+  <div class="row">
     <div class="col-xl-12 mb-3">
       <label for="formFile" class="form-label">Select csv file</label>
       <%= f.file_field :file, class: 'form-control', accept: '.csv' %>

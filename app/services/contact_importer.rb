@@ -113,15 +113,20 @@ class ContactImporter < ApplicationService
   end
 
   def row_params(row)
-    {
+    return @row_params if @row_params.present?
+
+    @row_params = {}
+    contact_file.file_columns.each do |file_column|
+      @row_params[file_column.field.to_sym] = row[file_column.column_name]
+    end
+    @row_params.merge!(
       user_id: contact_file.user_id,
-      name: row['Name'],
-      birthday: row['Date Of Birth'],
-      phone: row['Phone'],
-      address: row['Address'],
-      credit_card: row['Credit Card'],
-      email: row['Email'],
-      franchise: row['Credit Card']&.credit_card_brand
-    }
+      franchise: credit_card_field&.credit_card_brand
+    )
+    @row_params
+  end
+
+  def credit_card_field
+    @row_params[contact_file.file_columns.find_by(field: 'credit_card')&.field&.to_sym]
   end
 end
