@@ -1,6 +1,4 @@
 class ContactImporter < ApplicationService
-  require 'credit_card_validations/string'
-
   REGULAR_EXPRESSION_NAME = /^[a-zA-Z\dáÁéÉíÍóÓúÚüÜñÑ\s-]*$/i.freeze
   NUMBER_COLUMNS = 6
   STEPS = %w[
@@ -126,7 +124,7 @@ class ContactImporter < ApplicationService
     end
     @row_params.merge!(
       user_id: contact_file.user_id,
-      franchise: credit_card_field&.credit_card_brand
+      franchise: FindFranchise.call(credit_card_field)
     )
     @row_params
   end
