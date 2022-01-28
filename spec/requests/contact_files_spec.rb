@@ -31,7 +31,17 @@ RSpec.describe '/contact_files', type: :request do
       let(:file_path) { File.new("#{Rails.root}/spec/factories/files/example.csv").path }
       let(:params) do
         {
-          contact_file: { file: Rack::Test::UploadedFile.new(file_path) }
+          contact_file: {
+            file: Rack::Test::UploadedFile.new(file_path),
+            file_columns_attributes: {
+              '1': { column_name: 'Name', field: 'name' },
+              '2': { column_name: 'Date Of Birth', field: 'birthday' },
+              '3': { column_name: 'Phone', field: 'phone' },
+              '4': { column_name: 'Address', field: 'address' },
+              '5': { column_name: 'Credit Card', field: 'credit_card'},
+              '6': { column_name: 'Email', field: 'email' }
+            }
+          }
         }
       end
 
