@@ -6,11 +6,9 @@ This is a Rails application that allows users to upload contact files in CSV for
 
 ## Other important gems
 
-- [credit_card_validations](https://github.com/didww/credit_card_validations): verifies that the contact credit card number provided is well-formed.
 - [delayed_job_active_record](https://github.com/collectiveidea/delayed_job_active_record): manage the background jobs created when upload a contact CSV file, this jobs validate and import the contacts provided in the CSV file.
 - [devise](https://github.com/heartcombo/devise): User authentication and register with email and password.
 - [pagy](https://github.com/ddnexus/pagy): Paginate the contact files and contacts list.
-- [phonelib](https://github.com/daddyz/phonelib): Validate contact phone number.
 - [roo](https://github.com/roo-rb/roo): Used for read and process the CSV files uploaded.
 
 ## Important:
