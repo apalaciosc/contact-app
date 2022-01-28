@@ -90,7 +90,12 @@ class ContactImporter < ApplicationService
   end
 
   def validate_phone(row_params)
-    Phonelib.valid_for_country?(row_params[:phone]&.gsub(/[^0-9A-Za-z]/, ''), 'CO')
+    return false unless row_params[:phone][0..1] == '(+'
+
+    formatted_phone = row_params[:phone].gsub(/[^0-9A-Za-z]/, '')
+    formatted_phone.length == 12 && formatted_phone.scan(/\D/).empty?
+  rescue StandardError
+    false
   end
 
   def validate_credit_card(row_params)
