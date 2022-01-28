@@ -97,8 +97,7 @@ class ContactImporter < ApplicationService
   end
 
   def validate_credit_card(row_params)
-    detector = CreditCardValidations::Detector.new(row_params[:credit_card])
-    detector.valid?(row_params[:franchise])
+    ValidateCreditCard.call(row_params[:credit_card], row_params[:franchise])
   rescue StandardError
     false
   end
