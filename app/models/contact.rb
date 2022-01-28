@@ -4,19 +4,10 @@ class Contact < ApplicationRecord
   REGULAR_EXPRESSION_MASK_CREDIT_CARD = /.(?=....)/.freeze
   CREDIT_CARD_FRANCHISES = %i[
     amex
-    unionpay
-    dankort
     diners
-    elo
     discover
-    hipercard
     jcb
-    maestro
     mastercard
-    mir
-    rupay
-    solo
-    switch
     visa
   ].freeze
 

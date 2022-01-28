@@ -1,6 +1,4 @@
 class ContactImporter < ApplicationService
-  require 'credit_card_validations/string'
-
   REGULAR_EXPRESSION_NAME = /^[a-zA-Z\dáÁéÉíÍóÓúÚüÜñÑ\s-]*$/i.freeze
   NUMBER_COLUMNS = 6
   STEPS = %w[
@@ -90,12 +88,16 @@ class ContactImporter < ApplicationService
   end
 
   def validate_phone(row_params)
-    Phonelib.valid_for_country?(row_params[:phone]&.gsub(/[^0-9A-Za-z]/, ''), 'CO')
+    return false unless row_params[:phone][0..1] == '(+'
+
+    formatted_phone = row_params[:phone].gsub(/[^0-9A-Za-z]/, '')
+    formatted_phone.length == 12 && formatted_phone.scan(/\D/).empty?
+  rescue StandardError
+    false
   end
 
   def validate_credit_card(row_params)
-    detector = CreditCardValidations::Detector.new(row_params[:credit_card])
-    detector.valid?(row_params[:franchise])
+    ValidateCreditCard.call(row_params[:credit_card], row_params[:franchise])
   rescue StandardError
     false
   end
@@ -121,7 +123,7 @@ class ContactImporter < ApplicationService
     end
     @row_params.merge!(
       user_id: contact_file.user_id,
-      franchise: credit_card_field&.credit_card_brand
+      franchise: FindFranchise.call(credit_card_field)
     )
     @row_params
   end
