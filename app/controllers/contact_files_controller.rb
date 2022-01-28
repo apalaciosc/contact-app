@@ -7,6 +7,7 @@ class ContactFilesController < ApplicationController
 
   def new
     @contact_file = ContactFile.new
+    @contact_file.file_columns.build
   end
 
   def create
@@ -16,7 +17,7 @@ class ContactFilesController < ApplicationController
       if @contact_file.save
         format.html { redirect_to contact_files_path, notice: 'File saved successfully.' }
       else
-        format.html { render :new }
+        format.html { redirect_to contact_files_path, notice: @contact_file.errors.full_messages.join(' ') }
       end
     end
   end
@@ -24,6 +25,6 @@ class ContactFilesController < ApplicationController
   private
 
   def contact_file_params
-    params.require(:contact_file).permit(:file)
+    params.require(:contact_file).permit(:file, file_columns_attributes: %i[column_name field])
   end
 end
